@@ -44,7 +44,7 @@ const FetchWeather = () => {
           </button>
           {/* <button>Get Weather</button> */}
         </div>
-        <div className=" grid grid-cols-2 mt-10">
+        <div className="grid grid-rows-2 md:grid-cols-2 mt-10 ">
           <div>
             <h2 className="text-center font-bold font-mono text-2xl">
               LOCATION
