@@ -37,7 +37,7 @@ const FetchWeather = () => {
             onChange={changeCity}
           />
           <button
-            className="bg-slate-800 font-mono text-white rounded-lg m-2 p-3.5 shadow-3xl font-mono font-semibold"
+            className="bg-slate-800  text-white rounded-lg m-2 p-3.5 shadow-3xl font-mono font-semibold"
             onClick={() => setCity(city)}
           >
             Update City
