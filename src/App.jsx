@@ -12,12 +12,12 @@ function App() {
   return (
     <>
    
-    <div className='bg-map bg-cover bg-center bg-no-repeat h-screen w-full overflow-hidden'>
+    <div className='bg-map h-screen '>
     <FetchWeather />
     </div>
 
     
-    {/* <Test/> */}
+
   
         
     </>

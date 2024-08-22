@@ -29,7 +29,7 @@ const FetchWeather = () => {
   return (
     <>
       <div className="grid grid-cols ">
-        <div className=" bg-yellow-500 w-full p-2">
+        <div className=" bg-yellow-500  p-2">
           <input
             className=" ml-5 w-auto p-2 m-2 border-4 border-gray-400"
             type="text"
