@@ -11,9 +11,14 @@ function App() {
 
   return (
     <>
-    <FetchWeather/>
-    {/* <Test/>
-    */}
+   
+    <div className='bg-map bg-cover bg-center bg-no-repeat h-screen w-full overflow-hidden'>
+    <FetchWeather />
+    </div>
+
+    
+    {/* <Test/> */}
+  
         
     </>
   )
