@@ -12,7 +12,7 @@ function App() {
   return (
     <>
    
-    <div className='bg-map h-screen '>
+    <div className='bg-map h-screen  '>
     <FetchWeather />
     </div>
 

@@ -29,7 +29,7 @@ const FetchWeather = () => {
   return (
     <>
       <div className="grid grid-cols ">
-        <div className=" bg-yellow-500  p-2">
+        <div className=" bg-yellow-500 p-2">
           <input
             className=" ml-5 w-auto p-2 m-2 border-4 border-gray-400"
             type="text"
@@ -37,7 +37,7 @@ const FetchWeather = () => {
             onChange={changeCity}
           />
           <button
-            className="bg-slate-800  text-white rounded-lg m-2 p-3.5 shadow-3xl font-mono font-semibold"
+            className="bg-slate-800  text-white rounded-lg ml-5 p-2 shadow-3xl font-mono font-semibold w-auto"
             onClick={() => setCity(city)}
           >
             Update City
@@ -66,7 +66,7 @@ const FetchWeather = () => {
             </h2>
             <div className="bg-slate-800 font-mono text-white rounded-lg m-4 p-5 shadow-4xl w-50% space-y-5">
               <div>{`Weather: ${weather?.current?.condition?.text}`}</div>
-             
+
               <div>{`Temperature: ${weather?.current?.temp_c}°C`}</div>
               <div>{`Feels Like: ${weather?.current?.feelslike_c}°C`}</div>
               <div>{`Dew Point: ${weather?.current?.dewpoint_c}°C`}</div>
