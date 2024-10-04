@@ -3,10 +3,10 @@ import React, { useEffect, useState, useContext } from "react";
 import { WeatherContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
-export default function HistoricalData() {
+export default function futureForeCast() {
   const today = new Date();
   const { city, setCity, apiKey } = useContext(WeatherContext);
-  const [historicalForecastData, setHistoricalForecastData] = useState([]);
+  const [FutureForecastData, setFutureForecastData] = useState([]);
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("/");
@@ -16,7 +16,7 @@ export default function HistoricalData() {
   }
 
   // Fetch historical weather data for the past 7 days
-  const fetchHistoricalData = async () => {
+  const fetchFutureForeCastData = async () => {
     const requests = [];
 
     // Loop through the last 7 days to get data for each day
@@ -25,23 +25,23 @@ export default function HistoricalData() {
       date.setDate(today.getDate() - i);
       const formattedDate = date.toISOString().split("T")[0];
 
-      const url = `https://api.weatherapi.com/v1/history.json?key=${apiKey}&q=${city}&dt=${formattedDate}`;
+      const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&dt=${formattedDate}`;
       requests.push(axios.get(url));
     }
 
     // Wait for all API calls to resolve
     const responses = await Promise.all(requests);
     const data = responses.map((response) => response.data);
-    console.log("HISTORICAL DATA");
+    console.log("FUTURE DATA");
     console.log(data);
 
     // Store the data in state
-    setHistoricalForecastData(data);
+    setFutureForecastData(data);
   };
 
   // useEffect hook to call the fetch function when component mounts or when city/apiKey changes
   useEffect(() => {
-    fetchHistoricalData();
+    fetchFutureForeCastData();
   }, [city, apiKey]);
 
   return (
@@ -56,11 +56,11 @@ export default function HistoricalData() {
       />
 
       <h2 className="text-2xl font-bold mb-4">
-        Historical Weather Data for {city}
+       Forecast for {city}
       </h2>
 
       <div className="space-y-6">
-        {historicalForecastData.map((dayData, dayIndex) => (
+        {FutureForecastData.map((dayData, dayIndex) => (
           <div key={dayIndex}>
             <h3 className="text-lg font-semibold mb-4">
               {dayData.forecast.forecastday[0].date}
