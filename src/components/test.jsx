@@ -1,8 +1,7 @@
 export default function Test(){
-    const [count, setCount] = useState(0)
     return(
         <>
-        <button>Test</button>
+        <button className="border-2 border-red-500">Test</button>
 
         </>
     )

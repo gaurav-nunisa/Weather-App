@@ -20,7 +20,7 @@ export default function HistoricalData() {
     const requests = [];
 
     // Loop through the last 7 days to get data for each day
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 9; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() - i);
       const formattedDate = date.toISOString().split("T")[0];
@@ -56,18 +56,18 @@ export default function HistoricalData() {
       />
 
       <h2 className="text-2xl font-bold mb-4">
-        Historical Weather Data for {city}
+        Historical Weather Data for <i><u><b>{city}</b></u></i>
       </h2>
 
-      <div className="space-y-6">
+      <div className="space-y-6 ">
         {historicalForecastData.map((dayData, dayIndex) => (
           <div key={dayIndex}>
-            <h3 className="text-lg font-semibold mb-4">
+            <h3 className="text-lg font-semibold mb-4 text-purple-400">
               {dayData.forecast.forecastday[0].date}
             </h3>
 
             <div className="overflow-x-auto">
-              <table className="min-w-max table-auto border-collapse">
+              <table className="min-w-max table-auto border-collapse bg-[#212D3C] mb-3">
                 <thead>
                   <tr className="text-left border-b border-white">
                     <th className="p-2 border-r border-white">Time</th>
