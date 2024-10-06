@@ -2,7 +2,10 @@
 body{
     color: azure;
 }
-
+h1{
+  margin: 0;
+  padding: 0;
+}
 html, body{
     font-family: "kanit", system-ui;
 }

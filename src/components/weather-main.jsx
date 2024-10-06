@@ -91,13 +91,17 @@ const FetchWeather = ({ children }) => {
   };
   const WeatherTable = ({ weatherTableParam }) => {
     return (
-      <table className="min-w-max table-auto border-collapse bg-[#212D3C] gap-5">
+      <table className="table-auto border-collapse bg-[#212D3C] gap-5 ">
         <thead>
           <tr>
             <th className="p-2 border-b border-gray-200">Date</th>
             <th className="p-2 border-b border-gray-200">Temp (°C)</th>
             <th className="p-2 border-b border-gray-200">Condition</th>
             <th className="p-2 border-b border-gray-200">Humidity (%)</th>
+            <th className="p-2 border-b border-gray-200">Chance of Rain(%)</th>
+            <th className="p-2 border-b border-gray-200">UV </th>
+            <th className="p-2 border-b border-gray-200">Max Temp(C) </th>
+            <th className="p-2 border-b border-gray-200">Min Temp(C)</th>
           </tr>
         </thead>
         <tbody>
@@ -111,9 +115,22 @@ const FetchWeather = ({ children }) => {
               </td>
               <td className="p-2 align-top border-r border-gray-200 text-center">
                 {dayData.forecast.forecastday[0].day.condition.text}
+
               </td>
               <td className="p-2 align-top border-r border-gray-200 text-center">
                 {dayData.forecast.forecastday[0].day.avghumidity}%
+              </td>
+              <td className="p-2 align-top border-r border-gray-200 text-center">
+                {dayData.forecast.forecastday[0].day.daily_chance_of_rain}%
+              </td>
+              <td className="p-2 align-top border-r border-gray-200 text-center">
+                {dayData.forecast.forecastday[0].day.uv}%
+              </td>
+              <td className="p-2 align-top border-r border-gray-200 text-center">
+                {dayData.forecast.forecastday[0].day.maxtemp_c}%
+              </td>
+              <td className="p-2 align-top border-r border-gray-200 text-center">
+                {dayData.forecast.forecastday[0].day.mintemp_c}%
               </td>
             </tr>
           ))}
@@ -124,17 +141,57 @@ const FetchWeather = ({ children }) => {
 
   return (
     <>
-      <div className=" grid  grid-cols-3 h-screen">
-        <div className=" m-5 HEADER bg-[#212D3C] border rounded-lg  col-start-1 col-end-3 row-start-1 row-end-2 content-center">
+      <div className=" grid  grid-cols-3 h-screen md:grid-cols-2">
+        <div className=" m-5 HEADER bg-[#212D3C] border rounded-lg  col-start-1 col-end-4 row-start-1 row-end-2 content-cente r flex gap-5 xl:col-end-3">
           <input
             className=" w-[50%] p-2 m-2 border-4 border-gray-400 rounded-lg "
             type="text"
             value={city}
             onChange={changeCity}
             placeholder="Enter City"
+
+            
+
+            
           />
+          <div className="flex gap-5 justify-center m-3  xl:hidden"> 
+            <button
+            onClick={handleNavigate}
+            className="border rounded-lg p-1 bg-blue-300"
+          >
+            <b className="text-sm">Historical Data</b>
+          </button>
+          <button
+            className="border rounded-lg p-1 bg-yellow-300 "
+            onClick={futureForecastNavigateHandle}
+            
+          >
+            
+            <b className="text-sm">Future Forecast</b>
+          </button></div>
+          
+          
+
+          
+          
         </div>
-        <div className="SEEMORE m-5  bg-[#212D3C] border rounded-lg  col-start-3 col-end-4 row-start-1 row-end-2 display flex items-center justify-center gap-4">
+        {/* <div className=" SIDEBUTTONS flex justify-center m-5 content-center sm:hidden ">
+          <button
+            onClick={handleNavigate}
+            className="border rounded-lg p-1 bg-blue-300"
+          >
+            <b className="text-sm">Historical Data</b>
+          </button>
+          <button
+            className="border rounded-lg p-1 bg-yellow-300 "
+            onClick={futureForecastNavigateHandle}
+            
+          >
+            
+            <b className="text-sm">Future Forecast</b>
+          </button>
+        </div> */}
+        <div className="SEEMORE m-5  bg-[#212D3C] border rounded-lg  col-start-3 col-end-4 row-start-1 row-end-2 display  items-center justify-center gap-4 hidden xl:flex">
           <h1>Historical Weather</h1>
           <button
             onClick={handleNavigate}
@@ -144,14 +201,16 @@ const FetchWeather = ({ children }) => {
           </button>
         </div>
 
-        <div className="TODAYSHIGHLIGHT m-5  bg-[#212D3C] border rounded-lg  col-start-1 col-end-3 row-start-2 row-end-3 p-2 ">
-          <h1 className="text-center mb-3 mt-3 text-yellow-300">TODAY'S HIGHLIGHT</h1>
-          <div className="grid grid-cols-3 content-evenly border-b-2 border-gray-400 ">
-            <div className="text-center">
+        <div className="TODAYSHIGHLIGHT m-5  bg-[#212D3C] border rounded-lg  col-start-1 col-end-4 row-start-2 row-end-3 p-2 sm:col-start-1 sm:col-end-3">
+          <h1 className="text-center mb-3 mt-3 text-yellow-300">
+            TODAY'S HIGHLIGHT
+          </h1>
+          <div className="grid grid-cols-2 items-start content-evenly border-b-2 border-gray-400 md:grid-cols-3 ">
+            <div className="text-center ">
               {" "}
               {weather && weather.current ? (
                 <div>
-                  <h1> {weather.current.temp_c} C</h1>
+                  <p>{weather.current.temp_c} C</p>
 
                   <img src={`https:${icon}`} alt="" />
 
@@ -161,22 +220,23 @@ const FetchWeather = ({ children }) => {
                 <p>Loading.......</p>
               )}
             </div>
-            
+
             <div>
               {todaysTimeline ? (
                 todaysTimeline.forecast.forecastday.map(
                   (dayForeCast, index) => {
                     return (
-                      <div className="text-center flex flex-col gap-4 ">
+                      <div className="text-center  ">
                         <p>
                           FEELS LIKE : {todaysTimeline.current.feelslike_c} C 🌡️
                         </p>
-                        <p>UV INDEX : {todaysTimeline.current.uv} ⚠️</p> 
+                        <p>UV INDEX : {todaysTimeline.current.uv} ⚠️</p>
                         <p>
-                          WIND : {todaysTimeline.current.wind_mph}mph{" "}/
+                          WIND : {todaysTimeline.current.wind_mph}mph 💨
+                          <br />
                           {todaysTimeline.current.wind_kph}kph 💨
                         </p>
-                        <p>HUMIDITY : {todaysTimeline.current.humidity}% 💧</p> 
+                        <p>HUMIDITY : {todaysTimeline.current.humidity}% 💧</p>
                       </div>
                     );
                   }
@@ -190,7 +250,7 @@ const FetchWeather = ({ children }) => {
                 todaysTimeline.forecast.forecastday.map(
                   (dayForeCast, index) => {
                     return (
-                      <div className="text-center flex flex-col gap-4 ">
+                      <div className="text-center hidden flex-col  md:block ">
                         <p>SUNRISE : {dayForeCast.astro.sunrise} 🌄</p>
                         <p>SUNSET : {dayForeCast.astro.sunset} 🌅</p>
                         <p>MOON RISE :{dayForeCast.astro.moonrise} 🌃</p>
@@ -206,8 +266,10 @@ const FetchWeather = ({ children }) => {
           </div>
         </div>
 
-        <div className="TODAYSTIMELINE m-5 bg-[#212D3C] border rounded-lg overflow-auto col-start-1 col-end-3 row-start-3 row-end-4 ">
-          <h1 className="text-center mb-3 mt-3 text-yellow-300">TODAY'S TIMELINE</h1>
+        <div className="TODAYSTIMELINE m-5 bg-[#212D3C] border rounded-lg overflow-auto col-start-1 col-end-4 row-start-3 row-end-4 sm:col-start-1 sm:col-end-3">
+          <h1 className="text-center mb-3 mt-3 text-yellow-300">
+            TODAY'S TIMELINE
+          </h1>
           <table className="text-center w-full">
             <thead>
               <tr>
@@ -262,20 +324,30 @@ const FetchWeather = ({ children }) => {
           </table>
         </div>
 
-        <div className="WEEKLYFORECAST  m-5  row-start-2 row-end-4 col-start-3 col-end-4 bg-[#212D3C] border rounded-lg overflow-x-scroll hidden sm:block">
-          <h1 className="text-center mb-3 mt-3 text-yellow-300">Week's Forecast</h1>
-          <div className="pl-3 pr-3">
-          {futureForecastData.length > 0 ? (
-            <WeatherHistory weatherData={futureForecastData} />
-          ) : (
-            <p>Loading...</p>
-          )}
+        <div className="WEEKLYFORECAST  m-5  row-start-2 row-end-4 col-start-3 col-end-4 bg-[#212D3C] border rounded-lg overflow-x-scroll hidden sm:block md: text-center md:block md:col-start-1 md:col-end-3 md:row-start-4 md-row-end-5 xl:col-start-3 xl:col-end-4 xl:row-start-2 xl:row-end-4 md:text-center">
+          <h1 className="text-center mb-3 mt-3 text-yellow-300">
+            Week's Forecast
+          </h1>
+          <div className="pl-3 pr-3 ">
+            {futureForecastData.length > 0 ? (
+              <WeatherHistory weatherData={futureForecastData} />
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
-        
-         
-          <div className="p-5"><h3>TO  CHECKOUT  THE  FORECAST  FOR  THE  NEXT  15  DAYS , CLICK  HERE :  <br /><button className="border rounded-lg p-2 bg-yellow-300 mt-3" onClick= {futureForecastNavigateHandle}><b>see Forecast</b></button></h3></div>
-          
-           
+
+          <div className="p-5">
+            <h3>
+              TO CHECKOUT THE FORECAST FOR THE NEXT 15 DAYS , CLICK HERE :{" "}
+              <br />
+              <button
+                className="border rounded-lg p-2 bg-yellow-300 mt-3"
+                onClick={futureForecastNavigateHandle}
+              >
+                <b>see Forecast</b>
+              </button>
+            </h3>
+          </div>
         </div>
       </div>
     </>
