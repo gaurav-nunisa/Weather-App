@@ -46,13 +46,13 @@ export default function HistoricalData() {
 
   return (
     <div className="p-6">
-      <button onClick={handleNavigate}>Home</button>
+      <button className="mb-4 p-2 bg-blue-500 text-white rounded" onClick={handleNavigate}>Home</button>
       <input
         type="text"
         value={city}
         onChange={handleCityChange}
         placeholder="Enter a city"
-        className="mb-4 p-2 border rounded w-full"
+        className="mb-4 p-2   w-1/3  m-2 border-4 border-gray-400 rounded-lg"
       />
 
       <h2 className="text-2xl font-bold mb-4">

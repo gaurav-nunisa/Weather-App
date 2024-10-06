@@ -55,7 +55,7 @@ const FutureForecast = () => {
         value={city}
         onChange={handleCityChange}
         placeholder="Enter a city"
-        className="mb-4 p-2 border rounded w-full"
+        className="mb-4 p-2   w-1/3  m-2 border-4 border-gray-400 rounded-lg"
       />
 
       <h2 className="text-2xl font-bold mb-4">Historical Weather Data for <b><u><i>{city }</i></u></b></h2>

@@ -38,23 +38,6 @@ const FetchWeather = ({ children }) => {
     };
     fetchWeather();
 
-    // const fetchHistory = async () => {
-    //   try {
-    //     const historicalData = await axios.get(
-    //       `https://api.weatherapi.com/v1/history.json?key=${apiKey}&q=${encodeURIComponent(
-    //         city
-    //       )}&dt=${historicalYear}-${historicalMonth}-${historicalDate}`
-    //     );
-
-    //     console.log("THIS IS HISTORICAL DATA D-1");
-    //     console.log(historicalData);
-    //     setHistoricalDate(historicalData.data);
-    //   } catch (error) {
-    //     console.log('Error 400, check if date and city are valid:', error.response ? error.response.data : error.message);
-    //   }
-    // };
-    // fetchHistory();
-
     const fetchTodaysTimeline = async () => {
       try {
         const todaysTimelineData = await axios.get(
@@ -141,10 +124,10 @@ const FetchWeather = ({ children }) => {
 
   return (
     <>
-      <div className=" grid grid-rows 2 grid-cols-3 h-screen">
+      <div className=" grid  grid-cols-3 h-screen">
         <div className=" m-5 HEADER bg-[#212D3C] border rounded-lg  col-start-1 col-end-3 row-start-1 row-end-2 content-center">
           <input
-            className="-5 w-[50%] p-2 m-2 border-4 border-gray-400 rounded-lg "
+            className=" w-[50%] p-2 m-2 border-4 border-gray-400 rounded-lg "
             type="text"
             value={city}
             onChange={changeCity}
@@ -223,7 +206,7 @@ const FetchWeather = ({ children }) => {
           </div>
         </div>
 
-        <div className="TODAYSTIMELINE m-5 bg-[#212D3C] border rounded-lg overflow-auto col-start-1 col-end-3 row-start-3 row-end-5">
+        <div className="TODAYSTIMELINE m-5 bg-[#212D3C] border rounded-lg overflow-auto col-start-1 col-end-3 row-start-3 row-end-4 ">
           <h1 className="text-center mb-3 mt-3 text-yellow-300">TODAY'S TIMELINE</h1>
           <table className="text-center w-full">
             <thead>
@@ -279,15 +262,18 @@ const FetchWeather = ({ children }) => {
           </table>
         </div>
 
-        <div className="WEEKLYFORECAST  m-5  row-start-2 row-end-5 col-start-3 col-end-4 bg-[#212D3C] border rounded-lg">
+        <div className="WEEKLYFORECAST  m-5  row-start-2 row-end-4 col-start-3 col-end-4 bg-[#212D3C] border rounded-lg overflow-x-scroll hidden sm:block">
           <h1 className="text-center mb-3 mt-3 text-yellow-300">Week's Forecast</h1>
-        
+          <div className="pl-3 pr-3">
           {futureForecastData.length > 0 ? (
             <WeatherHistory weatherData={futureForecastData} />
           ) : (
             <p>Loading...</p>
           )}
-          <div className="p-5"><h3>TO  CHECKOUT  THE  FORECAST  FOR  THE  NEXT  15  DAYS , CLICK  HERE :  <button onClick={futureForecastNavigateHandle}>see Forecast</button></h3></div>
+          </div>
+        
+         
+          <div className="p-5"><h3>TO  CHECKOUT  THE  FORECAST  FOR  THE  NEXT  15  DAYS , CLICK  HERE :  <br /><button className="border rounded-lg p-2 bg-yellow-300 mt-3" onClick= {futureForecastNavigateHandle}><b>see Forecast</b></button></h3></div>
           
            
         </div>
