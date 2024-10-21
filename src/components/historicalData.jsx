@@ -67,7 +67,7 @@ export default function HistoricalData() {
             </h3>
 
             <div className="overflow-x-auto">
-              <table className="min-w-max table-auto border-collapse bg-[#212D3C] mb-3">
+              <table className="min-w-max table-auto border-collapse bg-[#212D3C] mb-3"> 
                 <thead>
                   <tr className="text-left border-b border-white">
                     <th className="p-2 border-r border-white">Time</th>
