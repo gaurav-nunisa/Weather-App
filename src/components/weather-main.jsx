@@ -338,7 +338,7 @@ const FetchWeather = ({ children }) => {
 
           <div className="p-5">
             <h3>
-              TO CHECKOUT THE FORECAST FOR THE NEXT 15 DAYS , CLICK HERE :{" "}
+              TO CHECKOUT THE FORECAST FOR THE WEEK , CLICK HERE :{" "}
               <br />
               <button
                 className="border rounded-lg p-2 bg-yellow-300 mt-3"
