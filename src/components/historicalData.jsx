@@ -20,7 +20,7 @@ export default function HistoricalData() {
     const requests = [];
 
     // Loop through the last 7 days to get data for each day
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 7; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() - i);
       const formattedDate = date.toISOString().split("T")[0];
